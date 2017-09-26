@@ -6,13 +6,18 @@ package com.example.xantrara.testingdatabase;
 
 public class Fridge {
     private String name;
+    private int ID;
     private String description;
 
-    public Fridge(String name){
+    public Fridge(String name, int ID){
         this.name = name;
+        this.ID = ID;
     }
 
     public String GetName(){
-        return name;
+        return this.name;
     }
+    
+    public int GetID () { return this.ID; }
+
 }

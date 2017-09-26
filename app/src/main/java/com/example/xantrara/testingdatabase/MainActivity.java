@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
 
     ArrayList<Fridge> fridgeList2 = new ArrayList<>();
-    FridgeListAdapter fridgeAdapter;
+    CustomAdapter fridgeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,13 @@ public class MainActivity extends Activity {
 
 
 
-        refreshFridgeList();
 
-        fridgeAdapter = new FridgeListAdapter(this, R.layout.fridge_list_view,fridgeList2);
+
+        fridgeAdapter = new CustomAdapter(getApplicationContext(), fridgeList2);
         ListView fridgeListView = findViewById(R.id.fridgeSelection);
 
         fridgeListView.setAdapter(fridgeAdapter);
-
+        refreshFridgeList();
     }
 
 
@@ -57,10 +57,9 @@ public class MainActivity extends Activity {
         Uri uri = getContentResolver().insert(
                 ContentProv.CONTENT_URI, values);
 
-        Toast.makeText(getBaseContext(),
-                uri.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Created!",Toast.LENGTH_SHORT).show();
         refreshFridgeList();
-        fridgeAdapter.notifyDataSetChanged();
+
     }
     public void onClickRetrieveStudents(View view) {
         // Retrieve student records
@@ -71,10 +70,7 @@ public class MainActivity extends Activity {
 
         if (c.moveToFirst()) {
             do{
-                Toast.makeText(this,
-                        c.getString(c.getColumnIndex(ContentProv._ID)) +
-                                ", " +  c.getString(c.getColumnIndex( ContentProv.NAME)),
-                        Toast.LENGTH_SHORT).show();
+
             } while (c.moveToNext());
         }
     }
@@ -89,12 +85,15 @@ public class MainActivity extends Activity {
 
         if (c.moveToFirst()) {
             do{
-                fridgeList2.add(new Fridge(c.getString(c.getColumnIndex( ContentProv.NAME))));
+
+                fridgeList2.add(new Fridge(c.getString(c.getColumnIndex( ContentProv.NAME)),
+                        c.getInt(c.getColumnIndex( ContentProv._ID))));
                 /*Toast.makeText(this,
                         c.getString(c.getColumnIndex(ContentProv._ID)) +
                                 ", " +  c.getString(c.getColumnIndex( ContentProv.NAME)),
                         Toast.LENGTH_SHORT).show();*/
             } while (c.moveToNext());
         }
+        fridgeAdapter.notifyDataSetChanged();
     }
 }
