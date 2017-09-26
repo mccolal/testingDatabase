@@ -43,6 +43,9 @@
         android:paddingLeft="15dp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/fridgeDesc"
-        android:layout_toEndOf="@+id/fridgeDesc" />
+        android:layout_toEndOf="@+id/fridgeDesc"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        />
 
 </RelativeLayout>

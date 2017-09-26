@@ -1,5 +1,6 @@
 package com.example.xantrara.testingdatabase;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.database.Cursor;
 import android.view.Menu;
 import android.view.View;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,6 +42,17 @@ public class MainActivity extends Activity {
 
         fridgeAdapter = new CustomAdapter(getApplicationContext(), fridgeList2);
         ListView fridgeListView = findViewById(R.id.fridgeSelection);
+
+        fridgeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Fridge e = fridgeAdapter.getItem(position);
+                Intent i = new Intent(MainActivity.this,FridgeContent.class);
+                i.putExtra("name",e.GetName());
+                i.putExtra("fridgeObject",e);
+                startActivity(i);
+            }
+        });
 
         fridgeListView.setAdapter(fridgeAdapter);
         refreshFridgeList();

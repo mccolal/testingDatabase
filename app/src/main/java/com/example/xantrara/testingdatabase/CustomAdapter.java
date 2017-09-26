@@ -1,5 +1,6 @@
 package com.example.xantrara.testingdatabase;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -33,9 +34,11 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return i;
+    public Fridge getItem(int i) {
+        return list.get(i);
     }
+
+
 
     public List<Fridge> getData(){
         return list;
@@ -43,7 +46,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
 

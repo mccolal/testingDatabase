@@ -1,10 +1,12 @@
 package com.example.xantrara.testingdatabase;
 
+import java.io.Serializable;
+
 /**
  * Created by Xantrara on 25-Sep-17.
  */
 
-public class Fridge {
+public class Fridge implements Serializable{
     private String name;
     private int ID;
     private String description;

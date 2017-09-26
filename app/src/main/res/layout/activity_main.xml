@@ -31,13 +31,15 @@ tools:context="com.example.xantrara.testingdatabase.MainActivity">
 
         android:layout_toStartOf="@id/addFridge"
 
+
         android:layout_alignParentBottom="true"/>
 
         <ListView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:id="@+id/fridgeSelection"
-        android:focusable="true"
+        android:focusable="false"
+            android:clickable="true"
         android:layout_above="@id/fridgeEntryName">
 </ListView>
 </RelativeLayout>
